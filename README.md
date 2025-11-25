@@ -6,15 +6,15 @@
 
 ## 📋 Table of Contents
 
-- [Features](#features)
-- [Supabase Setup](#supabase)
-- [Development](#develop)
-- [Adding Products](#adding-products-to-the-directory)
-- [Admin Setup](#admin-setup)
-- [Admin Dashboard](#accessing-the-admin-dashboard)
-- [Customization](#customize)
-- [Deployment](#deploy)
-- [Tech Stack](#tech-stack)
+- [Features](#-features)
+- [Supabase Setup](#️-supabase-setup)
+- [Development](#-development)
+- [Adding Products](#-adding-products-to-the-directory)
+- [Admin Setup](#-admin-setup)
+- [Admin Dashboard](#️-accessing-the-admin-dashboard)
+- [Customization](#-customization)
+- [Deployment](#-deployment)
+- [Tech Stack](#️-tech-stack)
 
 ---
 
