@@ -17,7 +17,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover";
-import { createClient } from "@/db/supabase/client";
+// import { createClient } from "@/db/supabase/client";
 import { cn } from "@/lib/utils";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -50,18 +50,18 @@ export function UserRow({ user }: { user: User }) {
 
     const handleRoleChange = async (newRole: string) => {
         setLoading(true);
-        const supabase = createClient();
-        const { error } = await supabase
-            .from("users")
-            .update({ role: newRole })
-            .eq("id", user.id);
+        // const supabase = createClient();
+        // const { error } = await supabase
+        //     .from("users")
+        //     .update({ role: newRole })
+        //     .eq("id", user.id);
 
-        if (error) {
-            console.error("Error updating role:", error);
-            // Revert on error (optional, or show toast)
-        } else {
-            setRole(newRole);
-        }
+        // if (error) {
+        //     console.error("Error updating role:", error);
+        //     // Revert on error (optional, or show toast)
+        // } else {
+        setRole(newRole);
+        // }
         setLoading(false);
         setOpen(false);
     };

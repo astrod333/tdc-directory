@@ -1,5 +1,7 @@
 "use client";
 
+import { signOut } from "@/app/actions/auth";
+
 import {
 	BarChartIcon,
 	BoxIcon,
@@ -36,7 +38,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { createClient } from "@/db/supabase/client";
+// import { createClient } from "@/db/supabase/client";
 import { cn, truncateString } from "@/lib/utils";
 
 export function NavSidebar({
@@ -54,13 +56,7 @@ export function NavSidebar({
 	const router = useRouter();
 
 	const handleLogout = async () => {
-		const db = await createClient();
-		const { error } = await db.auth.signOut();
-		if (error) {
-			console.error("Error logging out:", error.message);
-		} else {
-			router.push("/login"); // Redirect to login page after logout
-		}
+		await signOut();
 	};
 
 	const handleLinkClick = () => {

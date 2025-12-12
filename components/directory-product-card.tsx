@@ -98,7 +98,6 @@ export const ResourceCard: React.FC<{
 				<motion.p
 					initial={{ opacity: 0, y: 5 }}
 					animate={{ opacity: 1, y: 0 }}
-					// @ts-expect-error - framer-motion React 19 compatibility
 					className="text-xs leading-3 mb-2 text-neutral-500"
 				>
 					{getLastPathSegment(data.product_website, 10)}
@@ -136,7 +135,6 @@ export const ResourceCard: React.FC<{
 			layout
 			initial={{ opacity: 0, y: 10 }}
 			animate={{ opacity: 1, y: 0 }}
-			// @ts-expect-error - framer-motion React 19 compatibility
 			className="group relative  break-inside-avoid w-full"
 		>
 			{asChild ? (

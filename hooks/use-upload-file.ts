@@ -1,6 +1,6 @@
 import * as React from "react";
 import { toast } from "sonner";
-import { createClient } from "@/db/supabase/client";
+// import { createClient } from "@/db/supabase/client";
 
 import { getErrorMessage } from "@/lib/error";
 
@@ -12,7 +12,7 @@ export function useUploadFile(
 	_bucket: string,
 	{ defaultUploadedFiles = [] }: UseUploadFileProps = {},
 ) {
-	const supabase = createClient();
+	// const supabase = createClient();
 	const [uploadedFiles, setUploadedFiles] =
 		React.useState<any[]>(defaultUploadedFiles);
 	const [progresses, setProgresses] = React.useState<Record<string, number>>(
@@ -25,27 +25,17 @@ export function useUploadFile(
 		try {
 			const uploadPromises = files.map(async (file) => {
 				console.log("uploadPromises", file.name);
-				// console.log(file.name)
-				const { data, error } = await supabase.storage
-					.from("product-logos")
-					.upload(`${file.name}`, file, {
-						cacheControl: "3600",
-						upsert: false,
-					});
 
-				if (error) {
-					throw error;
-				}
+				// Mock upload for now as API upload endpoint is missing
+				// In real implementation we would POST to /api/upload
+				console.warn("File upload simulation - API endpoint needed");
 
-				if (data) {
-					return {
-						name: file.name,
-						url: `${
-							supabase.storage.from("product-logos").getPublicUrl(data.path)
-								.data.publicUrl
-						}`,
-					};
-				}
+				await new Promise(resolve => setTimeout(resolve, 500)); // Simulate delay
+
+				return {
+					name: file.name,
+					url: "https://placehold.co/400?text=" + encodeURIComponent(file.name)
+				};
 			});
 
 			const results = await Promise.all(uploadPromises);

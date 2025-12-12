@@ -5,23 +5,26 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { createClient } from "@/db/supabase/server";
+// import { createClient } from "@/db/supabase/server";
 
 export default async function AdminDashboard() {
-    const supabase = await createClient();
+    // const supabase = await createClient();
 
-    const { count: userCount } = await supabase
-        .from("users")
-        .select("*", { count: "exact", head: true });
+    // const { count: userCount } = await supabase
+    //     .from("users")
+    //     .select("*", { count: "exact", head: true });
 
-    const { count: productCount } = await supabase
-        .from("products")
-        .select("*", { count: "exact", head: true });
+    // const { count: productCount } = await supabase
+    //     .from("products")
+    //     .select("*", { count: "exact", head: true });
 
-    const { count: pendingProductCount } = await supabase
-        .from("products")
-        .select("*", { count: "exact", head: true })
-        .eq("approved", false);
+    // const { count: pendingProductCount } = await supabase
+    //     .from("products")
+    //     .select("*", { count: "exact", head: true })
+    //     .eq("approved", false);
+    const userCount = 0;
+    const productCount = 0;
+    const pendingProductCount = 0;
 
     return (
         <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">

@@ -1,39 +1,21 @@
-// import { createClient } from "@/db/supabase/server";
-// import { NextResponse } from "next/server";
-
-// export async function GET(request: Request) {
-//   // The `/auth/callback` route is required for the server-side auth flow implemented
-//   // by the SSR package. It exchanges an auth code for the user's session.
-//   // https://supabase.com/docs/guides/auth/server-side/nextjs
-//   const requestUrl = new URL(request.url);
-//   const code = requestUrl.searchParams.get("code");
-//   const origin = requestUrl.origin;
-
-//   if (code) {
-//     const supabase = createClient();
-//     await supabase.auth.exchangeCodeForSession(code);
-//   }
-
-//   // URL to redirect to after sign up process completes
-//   return NextResponse.redirect(`${origin}`);
-// }
-
 import { NextResponse } from "next/server";
-import { createClient } from "@/db/supabase/server";
+import { cookies } from "next/headers";
 
 export async function GET(request: Request) {
 	const requestUrl = new URL(request.url);
-	const code = requestUrl.searchParams.get("code");
-	const next = requestUrl.searchParams.get("next");
+	const token = requestUrl.searchParams.get("token");
+	const next = requestUrl.searchParams.get("next") || "/submit"; // Default to /submit after login
 
-	if (code) {
-		const supabase = await createClient();
-		await supabase.auth.exchangeCodeForSession(code);
+	if (token) {
+		const cookieStore = await cookies();
+		cookieStore.set("auth_token", token, {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === "production",
+			sameSite: "lax",
+			path: "/",
+		});
 	}
 
-	if (next) {
-		return NextResponse.redirect(requestUrl.origin + next);
-	} else {
-		return NextResponse.redirect(requestUrl.origin);
-	}
+	return NextResponse.redirect(requestUrl.origin + next);
 }
+

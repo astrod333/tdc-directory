@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import type { ReactElement } from "react";
 import { FadeIn } from "@/components/cult/fade-in";
-import { createClient } from "@/db/supabase/server";
+import { api } from "@/lib/api-client";
 
 import { NavSidebar } from "../../components/nav";
 import { getCachedFilters } from "../actions/cached_actions";
@@ -9,11 +9,12 @@ import SubmitTool from "./form";
 
 export default async function ProtectedSubmitPage(): Promise<ReactElement> {
 	const filters = await getCachedFilters();
-	const supabase = await createClient();
-
-	const {
-		data: { user },
-	} = await supabase.auth.getUser();
+	let user = null;
+	try {
+		user = await api.auth.me();
+	} catch (e) {
+		// Not logged in
+	}
 
 	if (!user) {
 		return redirect("/login");

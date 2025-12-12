@@ -11,7 +11,7 @@ import {
     DropdownMenuLabel,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { createClient } from "@/db/supabase/client";
+// import { createClient } from "@/db/supabase/client";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
@@ -33,18 +33,18 @@ export function ProductRow({ product }: { product: Product }) {
 
     const handleUpdate = async (updates: any) => {
         setLoading(true);
-        const supabase = createClient();
-        const { error } = await supabase
-            .from("products")
-            .update(updates)
-            .eq("id", product.id);
+        // const supabase = createClient();
+        // const { error } = await supabase
+        //     .from("products")
+        //     .update(updates)
+        //     .eq("id", product.id);
 
-        if (error) {
-            console.error("Error updating product:", error);
-        } else {
-            if (updates.approved !== undefined) setApproved(updates.approved);
-            if (updates.featured !== undefined) setFeatured(updates.featured);
-        }
+        // if (error) {
+        //     console.error("Error updating product:", error);
+        // } else {
+        if (updates.approved !== undefined) setApproved(updates.approved);
+        if (updates.featured !== undefined) setFeatured(updates.featured);
+        // }
         setLoading(false);
     };
 

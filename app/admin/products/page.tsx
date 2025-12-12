@@ -12,15 +12,16 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { createClient } from "@/db/supabase/server";
+// import { createClient } from "@/db/supabase/server";
 import { ProductRow } from "./product-row";
 
 export default async function ProductsPage() {
-    const supabase = await createClient();
-    const { data: products } = await supabase
-        .from("products")
-        .select("*")
-        .order("created_at", { ascending: false });
+    // const supabase = await createClient();
+    // const { data: products } = await supabase
+    //     .from("products")
+    //     .select("*")
+    //     .order("created_at", { ascending: false });
+    const products: any[] = []; // Stubbed for migration
 
     return (
         <Card>

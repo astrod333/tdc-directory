@@ -113,7 +113,7 @@
 ## Ensure your `.env` variables are configured correctly
 
 ```bash
-cp .env.local.example .env.local
+cp .env.example .env.local
 ```
 
 ```bash
@@ -325,6 +325,9 @@ Follow the steps outlined in this README to deploy and customize your directory 
 - **Authentication**: Supabase Auth
 - **AI**: Vercel AI SDK
 - **Deployment**: Vercel
+- **Styling**: Tailwind CSS, Framer Motion
+- **Forms**: React Hook Form, Zod
+- **Linting & Formatting**: Biome
 
 ---
 

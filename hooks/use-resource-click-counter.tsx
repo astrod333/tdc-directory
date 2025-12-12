@@ -1,33 +1,18 @@
 "use client";
 
 import { useCallback } from "react";
-import { createClient } from "@/db/supabase/client";
-
-const supabase = createClient();
+import { incrementClickCount as incrementAction } from "@/app/actions/product";
 
 const useResourceCounter = () => {
+	// We reuse the server action which now calls API
 	const incrementViewCount = useCallback(async (id: string) => {
-		const { data, error } = await supabase.rpc("increment_view_count", {
-			resource_id: id,
-		});
-
-		if (error) {
-			console.error("Error incrementing view count:", error);
-		} else {
-			console.log("View count incremented:", data);
-		}
+		await incrementAction(id);
+		console.log("View count incremented via API action");
 	}, []);
 
 	const incrementClickCount = useCallback(async (id: string) => {
-		const { data, error } = await supabase.rpc("increment_click_count", {
-			resource_id: id,
-		});
-
-		if (error) {
-			console.error("Error incrementing click count:", error);
-		} else {
-			console.log("Click count incremented:", data);
-		}
+		await incrementAction(id);
+		console.log("Click count incremented via API action");
 	}, []);
 
 	return {

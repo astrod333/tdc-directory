@@ -12,15 +12,16 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { createClient } from "@/db/supabase/server";
+// import { createClient } from "@/db/supabase/server";
 import { UserRow } from "./user-row";
 
 export default async function UsersPage() {
-    const supabase = await createClient();
-    const { data: users } = await supabase
-        .from("users")
-        .select("*")
-        .order("created_at", { ascending: false });
+    // const supabase = await createClient();
+    // const { data: users } = await supabase
+    //     .from("users")
+    //     .select("*")
+    //     .order("created_at", { ascending: false });
+    const users: any[] = []; // Stubbed
 
     return (
         <Card>

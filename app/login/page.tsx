@@ -2,12 +2,28 @@ import { LogoAnimationLink } from "@/components/nav";
 
 import { LoginForm } from "./form";
 
+import { redirect } from "next/navigation";
+import { api } from "@/lib/api-client";
+
 export default async function LoginPage({
 	searchParams,
 }: {
 	searchParams: Promise<{ message: string }>;
 }) {
 	const params = await searchParams;
+	let isLoggedIn = false;
+
+	try {
+		await api.auth.me();
+		isLoggedIn = true;
+	} catch (e) {
+		// Not logged in
+	}
+
+	if (isLoggedIn) {
+		redirect("/submit");
+	}
+
 	return (
 		<div>
 			<div className="absolute top-2 left-2 ">
